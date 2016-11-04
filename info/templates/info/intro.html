@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap In Practice - Landing Page Example</title>
+    {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600" rel="stylesheet" />
+
+    <style>
+
+        /* http://css-tricks.com/perfect-full-page-background-image/ */
+        html {
+            background: url('images/header.jpg') no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        body {
+            padding-top: 20px;
+            font-size: 16px;
+            font-family: serif;
+            background: transparent;
+        }
+
+        h1 {
+            font-family: "Abel", Arial, sans-serif;
+            font-weight: 400;
+            font-size: 40px;
+        }
+        a{
+           color: #fff;
+            background-color: #5CB85C;
+            border-color: #2e6da4;
+        }
+        /* Override B3 .panel adding a subtly transparent background */
+        .panel {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .margin-base-vertical {
+            margin: 40px 0;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+ <div class="row vertical-center-row">
+             <div class="col-md-6 col-md-offset-3 panel panel-default">
+
+                <h1 class="margin-base-vertical">Welcome</h1>
+                <h3 class="margin-base-vertical"> National Institute Of Technology Karnataka, Surathkal</h3>
+                <a href="{% url 'info:login_user' %}" class="btn btn-succsess btn-lg" >Student</a>
+                 <a href="{% url 'info:login_admin' %}" class="btn btn-successs btn-lg">Admin</a>
+                 <a href="{% url 'info:login_mess' %}" class="btn btn-successs btn-lg">Mess</a>
+
+
+                
+
+            </div><!-- //main content -->
+        </div><!-- //row -->
+    </div> <!-- //container -->
+
+    
+
+</body>
+</html>
+
+
+
+   
+               
