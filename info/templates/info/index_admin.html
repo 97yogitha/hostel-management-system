@@ -1,0 +1,28 @@
+
+{% extends 'info/sidebar_admin.html' %}
+
+{% block body %}
+
+	
+
+	<div class="portfoliocard text-center">
+		<div class="coverphoto"></div>
+		<div class="profile_picture"></div>
+		<div class="left_col">
+			
+		</div>
+		<div class="right_col">
+			<h2 class="name">{{hosteloffice}}</h2>
+			
+			<ul class="contact_information text-center">
+				<li> Hostel blocks: {{hostelblock}}</li><br>
+				<li> Rooms in hostelblock 1 :{{block1}}</li><br>
+				<li> Rooms in hostelblock 2 :{{block2}}</li><br>
+				<li> Number of complaintes received : {{r}}</li><br>
+				
+			</ul>
+		</div>
+		</div>
+
+
+{% endblock %}

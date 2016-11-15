@@ -1,0 +1,22 @@
+{% extends 'info/sidebar_mess.html' %}
+{% block body %}
+
+	<div class="portfoliocard text-center">
+		<div class="coverphoto"></div>
+		<div class="profile_picture"></div>
+		<div class="left_col">
+			 <ul class="nav nav-pills" style="margin-bottom: 10px; margin-left:20px;">
+                </ul>
+		</div>
+		<div class="right_col">
+			<h2 class="name">{{mess}}</h2>
+			
+			<ul class="contact_information text-center">
+				
+				<li>Number of students: {{numstu}} </li><br>
+				<li> Mess revenue per month :{{revmonth}}</li><br>
+			</ul>
+		</div>
+		</div>
+
+{% endblock %}

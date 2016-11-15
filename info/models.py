@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Hostel_block(models.Model):
@@ -17,12 +18,12 @@ class Hostel_block(models.Model):
 	room_cost = models.IntegerField()
 
 	def __str__(self):
-		return self.room_type
+		return str(self.block_no)
 	
 class Mess(models.Model):
-	muser = models.OneToOneField(User)
-	MESS_NAME = (('GH','girls hostel top mess'),
-					('IH','girls hostel down mess'),
+	muser = models.OneToOneField(User,on_delete=models.CASCADE)
+	MESS_NAME = (('IH','girls hostel top mess'),
+					('GH','girls hostel down mess'),
 					('MM','Mega mess'),
 					('FB','First Block mess'),
 					('SB','Second Block mess'),
@@ -30,13 +31,18 @@ class Mess(models.Model):
 					)
 	mess_name = models.CharField(max_length=25, choices = MESS_NAME,primary_key=True)
 	per_day_cost = models.IntegerField()
-	day = models.CharField(max_length=10)
+	def __str__(self):
+		return self.mess_name
+
+class MessMenu(models.Model):
+	mess_name = models.ForeignKey(Mess,on_delete=models.CASCADE)
+	day = models.DateField(default=timezone.now())
 	morning = models.TextField()
 	afternoon = models.TextField()
 	snacks = models.TextField()
 	dinner = models.TextField()
 	def __str__(self):
-		return self.mess_name
+		return str(self.day)
 
 class Room(models.Model):
 
@@ -47,7 +53,7 @@ class Room(models.Model):
 		return str(self.room_no)
 
 class Student(models.Model):
-	user = models.OneToOneField(User)
+	user = models.OneToOneField(User,on_delete=models.CASCADE)
 	sem = models.IntegerField()
 	dob = models.DateField()
 	roll_no = models.CharField(max_length=6, unique=True,primary_key=True)
@@ -56,7 +62,8 @@ class Student(models.Model):
 	coll_feeno = models.CharField(max_length=6,unique=True,blank=True)
 	mess_no = models.IntegerField(blank=True)
 	branch = models.CharField(max_length=25)
-	room_no = models.ForeignKey(Room)
+	hostel_block = models.ForeignKey(Hostel_block)
+	room_no = models.OneToOneField(Room)
 	mess_names = models.ForeignKey(Mess)
 
 	def __str__(self):
@@ -67,22 +74,20 @@ class Hostel_office(models.Model):
 	dept_no = models.IntegerField(primary_key=True)
 
 	def  __str__(self):
-		return self.dept_name
+		return self.huser.username
 		
 class Complaint(models.Model):
-	
-	STATUS = (('Recieved','Recieved'),
+	user = models.ForeignKey(Student)
+	STATUS = (	('Sent','Sent'),
+				('Received','Received'),
 				('In Progress','In Progress'),
 				('Completed','Completed'),
 				)
-	c_no = models.IntegerField(primary_key=True)
-	c_category = models.CharField(max_length=20)
-	c_description = models.TextField()
-	c_status = models.CharField(max_length=25,choices=STATUS)
+	c_category = models.CharField('Category',max_length=20)
+	c_description = models.TextField('Description')
+	c_status = models.CharField('Status',max_length=25,choices=STATUS,default = 'Sent')
 	c_deptno = models.ForeignKey(Hostel_office)
+	c_date = models.DateField('Date',default = timezone.now())
+	def __str__(self):
+		return self.c_category
 
-class Writes(models.Model):
-
-	w_rollno = models.ForeignKey(Student)
-	w_cno = models.ForeignKey(Complaint)
-	w_date = models.DateField()

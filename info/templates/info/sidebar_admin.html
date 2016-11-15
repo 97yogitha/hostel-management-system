@@ -15,6 +15,11 @@
         border:solid;
         border-color:#DDDDDD;
       }
+       <style>
+      th,td,tr{
+        border:solid;
+        border-color:#DDDDDD;
+      }
       a.nostyle{
   color:inherit;
   text-decoration:none;
@@ -136,6 +141,7 @@ div.portfoliocard div.follow_count{
 }
 
     </style>
+    </style>
 
 </head>
 <body>
@@ -143,11 +149,9 @@ div.portfoliocard div.follow_count{
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
-        <li><a href="{% url 'info:student_profile' %}">Profile</a></li>
-        <li><a href="{% url 'info:student_menu_view' %}">Mess Menu</a></li>
-        <li><a href="{% url 'info:complaint_register' %}">File a complaint</a></li>
-        <li><a href="{% url 'info:complaint_view' %}">View all the complaints</a></li>
-        <li><a href="{% url 'info:logout_user' %}">Logout</a></li>
+         <li><a href="{% url 'info:admin_profile' %}">Profile</a></li>
+        <li><a href="{% url 'info:complaint_admin' %}">View all the complaints</a></li>
+        <li><a href="{% url 'info:logout_admin' %}">Logout</a></li>
       </ul>
     </div>
     
@@ -172,7 +176,7 @@ div.portfoliocard div.follow_count{
     $("#wrapper").toggleClass("menuDisplayed");
   });
 });
-</script>
+</script> 
     
     
 </body>

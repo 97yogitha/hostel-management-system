@@ -1,0 +1,49 @@
+
+{% extends 'info/sidebar.html' %}
+
+{% block body %}
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Menu For the week</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Morning</th>
+                            <th>Afternoon</th>
+                            <th>Snacks</th>
+                            <th>Dinner</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for menu in messmenu %}
+                            <tr>
+                                <td>{{ menu.day }}</td>
+                                <td>
+                                    {{menu.morning}}
+                                </td>
+                                <td>
+                                   {{menu.afternoon}}
+                                </td>
+                                <td>
+                                    {{menu.snacks}}
+
+                                
+                                <td>{{menu.dinner}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

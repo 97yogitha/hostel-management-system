@@ -1,0 +1,55 @@
+{% extends 'info/sidebar.html' %}
+{% block body %}
+
+   <ul class="nav nav-pills" style="margin-bottom: 10px;">
+             
+                <li class="active" role="presentation"><a href="{% url 'info:complaint_register' %}">Add a new complaint</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Registered complaints</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Complaint No</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for complaint in student.complaint_set.all %}
+                            <tr>
+                                <td>{{ complaint.id }}</td>
+                                <td>
+                                    {{complaint.c_category}}
+                                </td>
+                                <td>
+                                   {{complaint.c_description}}
+                                </td>
+                                <td>
+                                    {{complaint.c_status}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

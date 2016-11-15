@@ -1,0 +1,58 @@
+{% extends 'info/sidebar_mess.html' %}
+{% block body %}
+
+   <ul class="nav nav-pills" style="margin-bottom: 10px;">
+             
+                <li class="active" role="presentation"><a href="{% url 'info:menu_update' %}">Update Menu</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Menu For the week</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}text</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Morning</th>
+                            <th>Afternoon</th>
+                            <th>Snacks</th>
+                            <th>Dinner</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for menu in mess.messmenu_set.all %}
+                            <tr>
+                                <td>{{ menu.day }}</td>
+                                <td>
+                                    {{menu.morning}}
+                                </td>
+                                <td>
+                                   {{menu.afternoon}}
+                                </td>
+                                <td>
+                                    {{menu.snacks}}
+
+                                </td>
+                                <td>{{menu.dinner}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

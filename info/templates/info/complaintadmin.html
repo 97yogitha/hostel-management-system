@@ -1,0 +1,57 @@
+{% extends 'info/sidebar_admin.html' %}
+{% block body %}
+
+   <ul class="nav nav-pills" style="margin-bottom: 10px;">
+             
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Registered complaints</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Complaint No</th>
+                            <th> Student </th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for complaint in complaints %}
+                            <tr>
+                                <td>{{ complaint.id }}</td>
+                                <td>{{complaint.user}}</td>
+                                <td>
+                                    {{complaint.c_category}}
+                                </td>
+                                <td>
+                                   {{complaint.c_description}}
+                                </td>
+                                <td>
+                                    {{complaint.c_status}}
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

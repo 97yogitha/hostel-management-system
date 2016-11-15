@@ -2,9 +2,34 @@
 {% extends 'info/sidebar.html' %}
 
 {% block body %}
-{{student}}
-{{student.username}}<br>
-<p class="text-center"> {{student.roll_no}} </p>
-{% endblock %}
 
-{{student.username}}
+
+	<div class="portfoliocard text-center">
+		<div class="coverphoto"></div>
+		<div class="profile_picture"></div>
+		<div class="left_col">
+			 <ul class="nav nav-pills" style="margin-bottom: 10px; margin-left:20px;">
+                <li class="active" role="presentation"><a href="/update_profile/">Update Profile</a></li>
+                </ul>
+		</div>
+		<div class="right_col">
+			<h2 class="name">{{student}}</h2>
+			
+			<ul class="contact_information text-center">
+				<li> Branch :{{student.branch}}
+				<li> Semester : {{student.sem}}</li>
+				<li> Hostel Block: {{student.hostel_block}}</li>
+				<li> Room No: {{student.room_no}}</li>
+				<li> Roll No  : {{student.roll_no}}</li>
+				<li> Registration No  : {{student.roll_no}}</li>
+				<li> Hostel Fee No : {{student.hostel_feeno}}</li>
+				<li> College Fee No : {{student.coll_feeno}}</li>
+				<li> Mess : {{student.mess_names}}</li>
+				<li> Mess Roll No: {{student.mess_no}}</li>
+				<li> Room Cost: {{hostel.room_cost}}</li>
+				<li> Mess Fees(per month): {% widthratio mess.per_day_cost 1 30 %}</li>
+			</ul>
+		</div>
+		</div>
+
+{% endblock %}
