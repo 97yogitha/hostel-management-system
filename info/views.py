@@ -11,7 +11,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from django.utils import timezone
-
+from django.db import models
+from django.http import StreamingHttpResponse
+from django.views.generic import View
+from info.models import Mess
+import csv
+from django.http import HttpResponse
+from django.utils.encoding import smart_str
 
 # Create your views here.
 def register(request):
@@ -375,3 +381,11 @@ def student_profile(request):
     	return render(request, 'info/update_profile.html', {'form':form,'student':student})
     
 '''
+
+def export_data(request, atype):
+    if atype == "sheet":
+        return excel.make_response_from_a_table(
+            Mess, 'xls', file_name="sheet")
+    elif atype == "mess":
+        return excel.make_response_from_tables(
+            [Mess, User], 'xls', file_name="Mess")
